@@ -2,48 +2,56 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Cambiado a min-height para textos largos */
     background-color: #ffe4e1;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    overflow: hidden; /* Evita que aparezcan barras de scroll si el botón huye */
-    touch-action: manipulation;
+    padding: 20px 0;
 }
 
 .container {
     text-align: center;
-    width: 90%;
-    max-width: 400px;
+    width: 85%;
+    max-width: 450px;
     background: white;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.15);
 }
 
-h1 { color: #d63384; font-size: 1.5rem; }
+p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+    text-align: left; /* El texto largo se lee mejor alineado a la izquierda */
+    margin-bottom: 15px;
+}
 
-img { width: 150px; margin: 20px 0; }
+h2 {
+    color: #d63384;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    line-height: 1.4;
+}
+
+img { width: 120px; margin: 10px 0; }
 
 .botones {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100px; /* Espacio para que el botón se mueva */
+    justify-content: center;
+    gap: 20px;
+    height: 80px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 15px 35px;
-    font-size: 1.2rem;
+    padding: 12px 30px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 50px;
+    border-radius: 25px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #btnSi { background-color: #28a745; color: white; }
-
-#btnNo { 
-    background-color: #dc3545; 
-    color: white; 
-    position: absolute; /* Importante para que salte por toda la pantalla */
-    transition: 0.1s;
-}
+#btnNo { background-color: #dc3545; color: white; position: absolute; transition: 0.1s; }
