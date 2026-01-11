@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe4e1;
+    font-family: sans-serif;
+    margin: 0;
+    overflow: hidden; /* Evita que aparezcan barras de scroll si el botón huye */
+    touch-action: manipulation;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 { color: #d63384; font-size: 1.5rem; }
+
+img { width: 150px; margin: 20px 0; }
+
+.botones {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px; /* Espacio para que el botón se mueva */
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+#btnSi { background-color: #28a745; color: white; }
+
+#btnNo { 
+    background-color: #dc3545; 
+    color: white; 
+    position: absolute; /* Importante para que salte por toda la pantalla */
+    transition: 0.1s;
+}
