@@ -1,3 +1,17 @@
+
+const musica = document.getElementById("musicaFondo");
+
+function iniciarMusica() {
+    musica.play();
+    // Quitamos los listeners para que no intente sonar cada vez que toque
+    document.removeEventListener("click", iniciarMusica);
+    document.removeEventListener("touchstart", iniciarMusica);
+}
+
+document.addEventListener("click", iniciarMusica);
+document.addEventListener("touchstart", iniciarMusica);
+
+
 const btnNo = document.querySelector("#btnNo");
 const btnSi = document.querySelector("#btnSi");
 const gif = document.querySelector("#gif");
@@ -33,3 +47,4 @@ btnSi.addEventListener("click", () => {
     btnNo.style.display = "none";
     btnSi.style.display = "none"; // También escondemos el botón Sí para que quede limpio
 });
+
