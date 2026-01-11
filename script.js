@@ -1,50 +1,54 @@
-
-const musica = document.getElementById("musicaFondo");
-
-function iniciarMusica() {
-    musica.play();
-    // Quitamos los listeners para que no intente sonar cada vez que toque
-    document.removeEventListener("click", iniciarMusica);
-    document.removeEventListener("touchstart", iniciarMusica);
-}
-
-document.addEventListener("click", iniciarMusica);
-document.addEventListener("touchstart", iniciarMusica);
-
-
 const btnNo = document.querySelector("#btnNo");
 const btnSi = document.querySelector("#btnSi");
 const gif = document.querySelector("#gif");
-const contenedorTexto = document.querySelector("#contenido"); // Seleccionamos todo el bloque de texto
+const contenedorTexto = document.querySelector("#contenido");
+const musica = document.getElementById("musicaFondo");
 
+// 1. FUNCIÓN PARA REPRODUCIR MÚSICA
+function iniciarMusica() {
+    musica.play().catch(error => {
+        console.log("Esperando interacción para sonar...");
+    });
+}
+
+// Escucha toques en cualquier parte (fundamental para celular)
+document.addEventListener("touchstart", iniciarMusica, { once: true });
+document.addEventListener("click", iniciarMusica, { once: true });
+
+
+// 2. LÓGICA DEL BOTÓN "NO" (QUE ESCAPA)
 function moverBoton() {
     const width = window.innerWidth - btnNo.offsetWidth;
     const height = window.innerHeight - btnNo.offsetHeight;
 
-    const x = Math.random() * width;
-    const y = Math.random() * height;
+    // Generar posición aleatoria
+    const x = Math.random() * (width - 20); // Margen de seguridad
+    const y = Math.random() * (height - 20);
 
-    btnNo.style.position = "absolute";
+    btnNo.style.position = "fixed"; // Fixed ayuda en móviles
     btnNo.style.left = x + "px";
     btnNo.style.top = y + "px";
 }
 
+// Eventos para que el botón escape
 btnNo.addEventListener("touchstart", (e) => {
     e.preventDefault();
     moverBoton();
+    iniciarMusica(); // También intenta activar música aquí
 });
 
 btnNo.addEventListener("mouseover", moverBoton);
 
+
+// 3. LÓGICA DEL BOTÓN "SÍ"
 btnSi.addEventListener("click", () => {
-    // 1. Borramos todo el texto de la propuesta
-    contenedorTexto.innerHTML = "<h1 style='color: #d63384;'>¡SÍ! Me haces el más feliz. 👫💖</h1>";
+    // Borrar el texto largo e Ivania leerá la confirmación
+    contenedorTexto.innerHTML = "<h1 style='color: #d63384; font-size: 1.8rem;'>¡SÍ! Me haces el hombre más feliz del mundo. 👫💖</h1>";
     
-    // 2. Cambiamos el GIF por uno de celebración (puedes buscar uno de besos o corazones)
+    // Cambiar el gif por uno de celebración
     gif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c7MaBy8T8kG5V5w96d/giphy.gif";
     
-    // 3. Escondemos el botón No definitivamente
+    // Ocultar botones
     btnNo.style.display = "none";
-    btnSi.style.display = "none"; // También escondemos el botón Sí para que quede limpio
+    btnSi.style.display = "none";
 });
-
